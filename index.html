@@ -3,34 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avanz Inicio </title>
+    <title>Avanz Inicio</title>
     <script>
-        function redireccionar() {
-            var esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            if (esMovil) {
-                window.location.href = "indexmovil.html"; // Reemplaza con la URL de la versión móvil
-            } else {
-                window.location.href = "pcindex.html"; // Reemplaza con la URL de la versión PC
-            }
-        }
-    </script>
-     <script>
-        async function verificarUbicacion() {
+        async function redireccionar() {
             try {
+                // Obtener la ubicación del usuario
                 const response = await fetch("https://ipapi.co/json/");
                 const data = await response.json();
                 const paisPermitido = ["NI", "HN"]; // Nicaragua y Honduras
 
+                // Si el usuario no está en Nicaragua o Honduras, lo redirige a Yahoo
                 if (!paisPermitido.includes(data.country_code)) {
-                    // Redirigir si no está en la lista de países permitidos
-                    window.location.href = "https://google.com"; // Cambia esto a la URL de bloqueo
+                    window.location.href = "https://www.yahoo.com";
+                    return; // Detener la ejecución del resto del código
+                }
+
+                // Si está permitido, verificar si es móvil o PC
+                var esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (esMovil) {
+                    window.location.href = "indexmovil.html"; // URL de la versión móvil
+                } else {
+                    window.location.href = "pcindex.html"; // URL de la versión PC
                 }
             } catch (error) {
                 console.error("Error al obtener la ubicación:", error);
+                window.location.href = "https://www.yahoo.com"; // Si hay error, redirigir a Yahoo
             }
         }
-
-        verificarUbicacion();
     </script>
 </head>
 <body onload="redireccionar()">
